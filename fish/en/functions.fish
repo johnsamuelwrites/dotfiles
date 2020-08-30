@@ -7,6 +7,32 @@ function create --description 'create file or directory'
   end
 end
 
+function validate --description 'validate xml or json file'
+  set argcount (count $argv)
+  if test $argv[1] = "xml"
+    xmllint $argv[2..$argcount]
+  else if test $argv[1] = "json" 
+    jq . $argv[2..$argcount]
+  end
+end
+
+function edit --description 'edit or update file'
+  set argcount (count $argv)
+  if test $argv[1] = "file"
+    vim $argv[2..$argcount]
+  else if test $argv[1] = "directory" 
+    cd $argv[2..$argcount]
+  end
+end
+
+function update --description 'edit or update file'
+  edit $argv
+end
+
+function change --description 'change, edit or update file'
+  edit $argv
+end
+
 function show --description 'read or show file or directory'
   set argcount (count $argv)
   if test $argv[1] = "file"
@@ -59,9 +85,13 @@ function functions_with_options
   return 1
 end
 
-funcsave create show delete list
+funcsave create show delete list edit change update validate
 funcsave functions_with_options
 complete -f -c create -n 'functions_with_options' -a 'file directory'
+complete -f -c validate -n 'functions_with_options' -a 'xml json'
+complete -f -c edit -n 'functions_with_options' -a 'file directory'
+complete -f -c change -n 'functions_with_options' -a 'file directory'
+complete -f -c update -n 'functions_with_options' -a 'file directory'
 complete -f -c show -n 'functions_with_options' -a 'file directory'
 complete -f -c delete -n 'functions_with_options' -a 'file directory process'
 complete -f -c list -n 'functions_with_options' -a 'file directory process network cpu hardware'
