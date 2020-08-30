@@ -91,3 +91,12 @@ alias delete="deleteaction"
 alias list="listaction"
 alias show="list"
 alias validate="validateaction"
+
+
+#Add support for autocompletion
+complete -W 'file directory' create
+complete -W 'file directory' read
+complete -W 'file process directory' delete
+complete -W 'file directory network cpu process memory hardware' show
+complete -W 'file directory network cpu process memory hardware' list
+complete -W 'xml json' validate
