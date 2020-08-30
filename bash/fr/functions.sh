@@ -11,6 +11,19 @@ function actioncréer() {
   fi
 }
 
+function actionvalider() {
+  count=$#
+  if [[ $1 == "xml" ]]
+  then
+    shift
+    xmllint --noout $@
+  elif [[ $1 == "json" ]]
+  then
+    shift
+    jq . $@
+  fi
+}
+
 function actionlire() {
   count=$#
   if [[ $1 == "fichier" ]]
@@ -77,3 +90,13 @@ alias lire="actionlire"
 alias supprimer="actionsupprimer"
 alias lister="actionlister"
 alias afficher="actionlister"
+alias valider="actionvalider"
+
+
+#Ajouter un support pour l'autocomplétion
+complete -W 'file directory' créer
+complete -W 'file directory' lire
+complete -W 'file process directory' supprimer
+complete -W 'file directory network cpu process memory hardware' afficher
+complete -W 'file directory network cpu process memory hardware' lister
+complete -W 'xml json' valider
