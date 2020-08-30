@@ -11,6 +11,19 @@ function createaction() {
   fi
 }
 
+function validateaction() {
+  count=$#
+  if [[ $1 == "xml" ]]
+  then
+    shift
+    xmllint --noout $@
+  elif [[ $1 == "json" ]]
+  then
+    shift
+    jq . $@
+  fi
+}
+
 function readaction() {
   count=$#
   if [[ $1 == "file" ]]
@@ -77,3 +90,4 @@ alias read="readaction"
 alias delete="deleteaction"
 alias list="listaction"
 alias show="list"
+alias validate="validateaction"
