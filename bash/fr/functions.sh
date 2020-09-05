@@ -11,6 +11,19 @@ function actioncréer() {
   fi
 }
 
+function actionéditer() {
+  count=$#
+  if [[ $1 == "fichier" ]]
+  then
+    shift
+    vim $@
+  elif [[ $1 == "répertoire" ]]
+  then
+    shift
+    cd $@
+  fi
+}
+
 function actionvalider() {
   count=$#
   if [[ $1 == "xml" ]]
@@ -91,6 +104,8 @@ alias supprimer="actionsupprimer"
 alias lister="actionlister"
 alias afficher="actionlister"
 alias valider="actionvalider"
+alias éditer="actionéditer"
+alias changer="éditer"
 
 
 #Ajouter un support pour l'autocomplétion

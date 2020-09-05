@@ -11,6 +11,19 @@ function createaction() {
   fi
 }
 
+function editaction() {
+  count=$#
+  if [[ $1 == "file" ]]
+  then
+    shift
+    vim $@
+  elif [[ $1 == "directory" ]]
+  then
+    shift
+    cd $@
+  fi
+}
+
 function validateaction() {
   count=$#
   if [[ $1 == "xml" ]]
@@ -87,15 +100,21 @@ function listaction() {
 
 alias create="createaction"
 alias read="readaction"
+alias edit="editaction"
 alias delete="deleteaction"
 alias list="listaction"
 alias show="list"
+alias update="edit"
+alias change="edit"
 alias validate="validateaction"
 
 
 #Add support for autocompletion
 complete -W 'file directory' create
 complete -W 'file directory' read
+complete -W 'file directory' edit
+complete -W 'file directory' update
+complete -W 'file directory' change
 complete -W 'file process directory' delete
 complete -W 'file directory network cpu process memory hardware' show
 complete -W 'file directory network cpu process memory hardware' list
