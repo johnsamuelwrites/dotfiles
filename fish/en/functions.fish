@@ -46,6 +46,8 @@ function show --description 'read or show file or directory'
     cat $argv[2..$argcount]
   else if test $argv[1] = "directory" 
     ls -p $argv[2..$argcount]
+  else if test $argv[1] = "battery" 
+    acpi -V
   end
 end
 
@@ -74,6 +76,8 @@ function list --description 'list file, process or directory'
     lscpu
   else if test $argv[1] = "hardware" 
     lshw
+  else if test $argv[1] = "battery" 
+    acpi -V
   else if test $argv[1] = "memory" 
     cat /proc/meminfo
   end
@@ -101,4 +105,4 @@ complete -f -c change -n 'functions_with_options' -a 'file directory'
 complete -f -c update -n 'functions_with_options' -a 'file directory'
 complete -f -c show -n 'functions_with_options' -a 'file directory'
 complete -f -c delete -n 'functions_with_options' -a 'file directory process'
-complete -f -c list -n 'functions_with_options' -a 'file directory process network cpu hardware'
+complete -f -c list -n 'functions_with_options' -a 'file directory process network cpu hardware memory battery'

@@ -53,6 +53,8 @@ function supprimer --description 'supprimer un fichier, un processusus ou un ré
     kill -9 $argv[2..$argcompteur]
   else if test $argv[1] = "répertoire" 
     rmdir $argv[2..$argcompteur]
+  else if test $argv[1] = "batterie" 
+    acpi -V
   end
 end
 
@@ -70,6 +72,8 @@ function lister --description 'lister des fichiers, des processusus, des répert
     lscpu
   else if test $argv[1] = "matériel" 
     lshw
+  else if test $argv[-1] = "batterie" 
+    acpi -V
   else if test $argv[1] = "mémoire" 
     cat /proc/meminfo
   end
@@ -94,6 +98,6 @@ complete -f -c créer -n 'functions_avec_des_options' -a 'fichier répertoire'
 complete -f -c valider -n 'functions_avec_des_options' -a 'xml json'
 complete -f -c changer -n 'functions_avec_des_options' -a 'fichier répertoire'
 complete -f -c modifier -n 'functions_avec_des_options' -a 'fichier répertoire'
-complete -f -c afficher -n 'functions_avec_des_options' -a 'fichier répertoire'
+complete -f -c afficher -n 'functions_avec_des_options' -a 'fichier répertoire batterie'
 complete -f -c supprimer -n 'functions_avec_des_options' -a 'fichier répertoire processus'
-complete -f -c lister -n 'functions_avec_des_options' -a 'fichier répertoire processus réseau cpu matériel mémoire'
+complete -f -c lister -n 'functions_avec_des_options' -a 'fichier répertoire processus réseau cpu batterie matériel mémoire'
