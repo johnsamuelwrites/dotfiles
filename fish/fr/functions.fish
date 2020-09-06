@@ -1,3 +1,10 @@
+#
+# SPDX-FileCopyrightText: 2020 John Samuel <johnsamuelwrites@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+
 function créer --description 'créer un fichier ou un répertoire'
   set argcompteur (count $argv)
   if test $argv[1] = "fichier"
