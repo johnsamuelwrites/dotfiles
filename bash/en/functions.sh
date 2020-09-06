@@ -97,6 +97,10 @@ function listaction() {
   then
     shift
     cat /proc/meminfo
+  elif [[ $1 == "battery" ]]  || [ [$1 == "power" ]]
+  then
+    shift
+    acpi -V
   elif [[ $1 == "process" ]]
   then
     shift
@@ -122,6 +126,6 @@ complete -W 'file directory' edit
 complete -W 'file directory' update
 complete -W 'file directory' change
 complete -W 'file process directory' delete
-complete -W 'file directory network cpu process memory hardware' show
-complete -W 'file directory network cpu process memory hardware' list
+complete -W 'file directory network cpu process memory hardware battery power' show
+complete -W 'file directory network cpu process memory hardware battery power' list
 complete -W 'xml json' validate

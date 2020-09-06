@@ -61,7 +61,7 @@ function actionsupprimer() {
   then
     shift
     rm $@
-  elif [[ $1 == "processus" ]]
+  elif [[ $1 == "processusus" ]]
   then
     shift
     kill -9 $@
@@ -97,6 +97,10 @@ function actionlister() {
   then
     shift
     cat /proc/meminfo
+  elif [[ $1 == "batterie" ]]
+  then
+    shift
+    acpi -V
   elif [[ $1 == "processus" ]]
   then
     shift
@@ -115,9 +119,9 @@ alias changer="éditer"
 
 
 #Ajouter un support pour l'autocomplétion
-complete -W 'file directory' créer
-complete -W 'file directory' lire
-complete -W 'file process directory' supprimer
-complete -W 'file directory network cpu process memory hardware' afficher
-complete -W 'file directory network cpu process memory hardware' lister
+complete -W 'fichier répertoire' créer
+complete -W 'fichier répertoire' lire
+complete -W 'fichier processus répertoire' supprimer
+complete -W 'fichier répertoire réseau cpu processus mémoire hardware' afficher
+complete -W 'fichier répertoire réseau cpu processus mémoire hardware' lister
 complete -W 'xml json' valider
