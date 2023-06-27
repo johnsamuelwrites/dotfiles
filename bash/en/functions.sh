@@ -94,17 +94,47 @@ function validateaction() {
   fi
 }
 
+# Function to handle different read actions
 function readaction() {
-  if [[ $1 == $file ]]
-  then
+  if [[ $1 == $file ]]; then
     shift
-    cat $@
-  elif [[ $1 == $directory ]]
-  then
+    cat "$@"
+  elif [[ $1 == $directory ]]; then
     shift
-    ls $@
+    ls "$@"
+  elif [[ $1 == $network ]]; then
+    shift
+    ifconfig
+  elif [[ $1 == $cpu ]]; then
+    shift
+    # Get CPU information
+    cat /proc/cpuinfo
+  elif [[ $1 == $process ]]; then
+    shift
+    # List running processes
+    ps aux
+  elif [[ $1 == $memory ]]; then
+    shift
+    # Display memory usage
+    free
+  elif [[ $1 == $hardware ]]; then
+    shift
+    # List PCI devices
+    lspci
+  elif [[ $1 == $battery ]]; then
+    shift
+    # Read battery status
+    upower -i /org/freedesktop/UPower/devices/battery_BAT0
+  elif [[ $1 == $power ]]; then
+    shift
+    # Check power supply status
+    acpi -a
+  else
+    echo "Unknown resource: $1"
   fi
 }
+
+
 function deleteaction() {
   if [[ $1 == $file ]]
   then
@@ -120,35 +150,32 @@ function deleteaction() {
     rmdir $@
   fi
 }
+
+# Function to handle different list actions
 function listaction() {
-  if [[ $1 == $file ]]
-  then
+  if [[ $1 == $file ]]; then
     shift
-    ls -a $@
-  elif [[ $1 == $directory ]]
-  then
+    ls -a "$@"
+  elif [[ $1 == $directory ]]; then
     shift
-    ls $@
-  elif [[ $1 == $network ]]
-  then
-    netstat -natp 
-  elif [[ $1 == $cpu ]]
-  then
-    lscpu 
-  elif [[ $1 == $hardware ]]
-  then
+    ls "$@"
+  elif [[ $1 == $network ]]; then
+    netstat -natp
+  elif [[ $1 == $cpu ]]; then
+    lscpu
+  elif [[ $1 == $hardware ]]; then
     lshw
-  elif [[ $1 == $memory ]]
-  then
+  elif [[ $1 == $memory ]]; then
     cat /proc/meminfo
-  elif [[ $1 == $battery ]]  || [ [$1 == $power ]]
-  then
+  elif [[ $1 == $battery || $1 == $power ]]; then
     acpi -V
-  elif [[ $1 == $process ]]
-  then
+  elif [[ $1 == $process ]]; then
     ps -aux
+  else
+    echo "Unknown resource: $1"
   fi
 }
+
 
 
 function batteryaction() {
