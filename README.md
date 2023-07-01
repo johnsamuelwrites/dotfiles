@@ -21,6 +21,7 @@ Following are the major computer resources handled by different commands:
 Following are the major actions on the aforementioned computer resources handled by different commands: 
 - authenticate
 - backup
+- change
 - close
 - compare
 - compile
@@ -47,15 +48,18 @@ Following are the major actions on the aforementioned computer resources handled
 - move
 - open
 - read
+- remove
 - rename
 - resize
 - restart
 - restore
 - save
 - schedule
+- show
 - search
 - terminate
 - uninstall
+- update
 - validate
 
 ## Shells
