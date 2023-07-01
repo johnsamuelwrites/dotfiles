@@ -5,15 +5,26 @@
 #
 
 # Resource names
-file="file"
-directory="directory"
-network="network"
-cpu="cpu"
-process="process"
-memory="memory"
-hardware="hardware"
 battery="battery"
+cpu="cpu"
+database="database"
+directory="directory"
+file="file"
+hardware="hardware"
+image="image"
+library="library"
+memory="memory"
+network="network"
+package="package"
 power="power"
+process="process"
+service="service"
+software="software"
+system="system"
+task="task"
+video="video"
+
+# Data formats
 xml="xml"
 json="json"
 
@@ -730,7 +741,7 @@ function terminateaction() {
 
 # Function to handle compile action
 function compileaction() {
-  if [[ $1 == "source" ]]; then
+  if [[ $1 == "file" ]]; then
     shift
     if [[ $# -eq 0 ]]; then
       echo "No source files specified for compilation."
@@ -765,7 +776,7 @@ function debugaction() {
         shift
       done
     fi
-  elif [[ $1 == "application" ]]; then
+  elif [[ $1 == "application" || $1 == $file ]]; then
     shift
     if [[ $# -eq 0 ]]; then
       echo "No application files specified for debugging."
@@ -1003,7 +1014,7 @@ function exportaction() {
         shift
       done
     fi
-  elif [[ $1 == "filesystem" ]]; then
+  elif [[ $1 == "file" ]]; then
     shift
     if [[ $# -eq 0 ]]; then
       echo "No export options specified."
@@ -1038,7 +1049,7 @@ function importaction() {
         shift
       done
     fi
-  elif [[ $1 == "filesystem" ]]; then
+  elif [[ $1 == "file" ]]; then
     shift
     if [[ $# -eq 0 ]]; then
       echo "No import options specified."
@@ -1414,14 +1425,14 @@ alias decompress="decompressaction"
 alias decrypt="decryptaction"
 alias delete="deleteaction"
 alias divide="divideaction"
-alias modify="modifyaction"
+alias edit="editaction"
+alias modify="editaction"
 alias encrypt="encryptaction"
 alias execute="executeaction"
 alias exportdata="exportaction"
 alias import="importaction"
 alias initialize="initializeaction"
 alias install="installaction"
-alias enumerate="enumerateaction"
 alias merge="mergeaction"
 alias monitor="monitoraction"
 alias move="moveaction"
@@ -1452,20 +1463,52 @@ alias $directory="directoryaction"
 
 #Add support for autocompletion
 #Action verb and object combination
-complete -o default -W "$file $directory" $create
-complete -o default -W "$file $directory" $readactionverb
-complete -o default -W "$file $directory" $edit
-complete -o default -W "$file $directory" $update
-complete -o default -W "$file $directory" $change
-complete -o default -W "$file $directory" $copy
-complete -o default -W "$file $directory" $move
-complete -o default -W "$file $directory" $rename
-complete -o default -W "$file $process $directory" $delete
-complete -o default -W "$file $process $directory" $remove
-complete -o default -W "$file $directory $network $cpu $process $memory $hardware $battery $power" $show
-complete -o default -W "$file $directory $network $cpu $process $memory $hardware $battery $power" $list
-complete -o default -W "$xml $json" $validate
 
+# Add support for autocompletion
+complete -o default -W "$file $directory" "$create"
+complete -o default -W "$file $directory" "$readactionverb"
+complete -o default -W "$file $directory" "$edit"
+complete -o default -W "$file $directory" "$update"
+complete -o default -W "$file $directory" "$change"
+complete -o default -W "$file $directory" "$copy"
+complete -o default -W "$file $directory" "$move"
+complete -o default -W "$file $directory" "$rename"
+complete -o default -W "$file $process $directory" "$delete"
+complete -o default -W "$file $process $directory" "$remove"
+complete -o default -W "$file $directory $network $cpu $process $memory $hardware $battery $power" "$show"
+complete -o default -W "$file $directory $network $cpu $process $memory $hardware $battery $power" "$list"
+complete -o default -W "$xml $json" "$validate"
+complete -o default -W "$user" "$authenticate"
+complete -o default -W "$file $directory" "$backup"
+complete -o default -W "$file $process" "$close"
+complete -o default -W "$file $directory" "$compare"
+complete -o default -W "$file" "$compile"
+complete -o default -W "$file $directory" "$compress"
+complete -o default -W "$network $service $software" "$configure"
+complete -o default -W "$file $directory $image $video" "$convert"
+complete -o default -W "$process $file $application" "$debug"
+complete -o default -W "$file $directory" "$decompress"
+complete -o default -W "$file" "$decrypt"
+complete -o default -W "$file $directory" "$divide"
+complete -o default -W "$file" "$encrypt"
+complete -o default -W "$file" "$execute"
+complete -o default -W "$file $database" "$exportdata"
+complete -o default -W "$file $database" "$import"
+complete -o default -W "$application $database" "$initialize"
+complete -o default -W "$package $library" "$install"
+complete -o default -W "$file" "$merge"
+complete -o default -W "$process $network $system" "$monitor"
+complete -o default -W "$file $directory" "$open"
+complete -o default -W "$file $directory" "$retrieve"
+complete -o default -W "$file $directory" "$rename"
+complete -o default -W "$file $directory $memory $hardware" "$resize"
+complete -o default -W "$network $cpu $process $memory $hardware $power" "$restart"
+complete -o default -W "$file $directory" "$restore"
+complete -o default -W "$file $directory" "$save"
+complete -o default -W "$process $task" "$schedule"
+complete -o default -W "$file $directory $process" "$search"
+complete -o default -W "$process $network" "$terminate"
+complete -o default -W "$package $library" "$uninstall"
 
 #Add support for autocompletion
 #object and action verb combination
