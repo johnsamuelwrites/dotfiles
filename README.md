@@ -9,13 +9,22 @@ The goal of `dotfiles` is to build a multilingual command line with multilingual
 Following are the major computer resources handled by different commands: 
 - battery
 - cpu
+- database
 - directory
 - file
 - hardware
+- image
+- library
 - memory
 - network
+- package
 - power
 - process
+- service
+- software
+- system
+- task
+- video
 
 ## Actions
 Following are the major actions on the aforementioned computer resources handled by different commands: 
