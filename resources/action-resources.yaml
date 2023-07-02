@@ -1,0 +1,143 @@
+commands:
+  - action: create
+    resources: [file, directory]
+
+  - action: read
+    resources: [file, directory]
+
+  - action: edit
+    resources: [file, directory]
+
+  - action: update
+    resources: [file, directory]
+
+  - action: change
+    resources: [file, directory]
+
+  - action: copy
+    resources: [file, directory]
+
+  - action: move
+    resources: [file, directory]
+
+  - action: rename
+    resources: [file, directory]
+
+  - action: delete
+    resources: [file, process, directory]
+
+  - action: remove
+    resources: [file, process, directory]
+
+  - action: show
+    resources: [file, directory, network, cpu, process, memory, hardware, battery, power]
+
+  - action: list
+    resources: [file, directory, network, cpu, process, memory, hardware, battery, power]
+
+  - action: validate
+    resources: [xml, json]
+
+  - action: authenticate
+    resources: [user]
+
+  - action: backup
+    resources: [file, directory]
+
+  - action: close
+    resources: [file, process]
+
+  - action: compare
+    resources: [file]
+
+  - action: compile
+    resources: [file]
+
+  - action: compress
+    resources: [file, directory]
+
+  - action: configure
+    resources: [network, service, software]
+
+  - action: convert
+    resources: [file, directory, image, video]
+
+  - action: debug
+    resources: [process, file, application]
+
+  - action: decompress
+    resources: [file, directory]
+
+  - action: decrypt
+    resources: [file]
+
+  - action: divide
+    resources: [file]
+
+  - action: encrypt
+    resources: [file]
+
+  - action: execute
+    resources: [file]
+
+  - action: exportdata
+    resources: [file, database]
+
+  - action: import
+    resources: [file, database]
+
+  - action: initialize
+    resources: [application, database]
+
+  - action: install
+    resources: [package, library]
+
+  - action: enumerate
+    resources: [package, library]
+
+  - action: merge
+    resources: [file]
+
+  - action: monitor
+    resources: [process, network, system]
+
+  - action: move
+    resources: [file, directory]
+
+  - action: open
+    resources: [file, directory]
+
+  - action: retrieve
+    resources: [file, directory]
+
+  - action: rename
+    resources: [file, directory]
+
+  - action: resize
+    resources: [file, directory, memory, hardware]
+
+  - action: restart
+    resources: [network, cpu, process, memory, hardware, power]
+
+  - action: restore
+    resources: [file, directory]
+
+  - action: save
+    resources: [file, directory]
+
+  - action: schedule
+    resources: [process, task]
+
+  - action: search
+    resources: [file, directory, process]
+
+  - action: terminate
+    resources: [process, network]
+
+  - action: uninstall
+    resources: [package, library]
+
+  - action: validate
+    resources: [xml, json]
+
+
